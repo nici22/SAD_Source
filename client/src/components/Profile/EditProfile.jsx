@@ -146,7 +146,6 @@ const TopContainer = styled(motion.div)`
         }
     }
     position: absolute;
-    z-index: 1;
     top: 0;
     left: 0;
     width: 100vw;

@@ -33,7 +33,7 @@ const App = () => {
           <Route element={<Chat />} path='/chat' />
           <Route element={<Discover />} path='/discover' />
           <Route element={<Notify />} path='/notify' />
-          <Route element={<Profile />} path='/profile/:_id' />
+          <Route element={<Profile />} path='/profile/*' />
           <Route element={<Posts />} path='/posts/:post_id' />
         </Route>
         <Route path='*' element={<NotFound />} />
