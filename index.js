@@ -32,8 +32,9 @@ app.use('/api/posts', postRoute);
 if (process.env.NODE_ENV === 'production'){
     app.use(express.static("client/build"));
     app.get("*",(req,res)=>{
+        console.log(__dirname);
 //        res.sendFile(path.join(__dirname,"index.html"));
-        res.sendFile(path.join(__dirname,"client","build","index.html"));
+        res.sendFile(path.join(__dirname,"workspace","client","build","index.html"));
 
     });
 }
