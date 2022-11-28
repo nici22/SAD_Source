@@ -17,6 +17,8 @@ const FollowPosts = () => {
                 headers: { Authorization: access_token }
             })
                 .then((result) => {
+                    console.log(result.data.posts);
+                    console.log(type(result.data.posts));
                     setDisplay(true);
                     setPosts(result.data.posts);
                 })
