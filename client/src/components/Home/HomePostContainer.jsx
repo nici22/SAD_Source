@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import PostInputContainer from './PostInputContainer';
-import UserPosts from './UserPosts';
+import HomePosts from './HomePosts';
 
 const HomePostContainer = () => {
     return (
         <Container>
             <PostInputContainer />
-            <UserPosts />
+            <HomePosts />
         </Container>
     );
 };

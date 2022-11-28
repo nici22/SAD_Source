@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ProfileImage from '../components/Profile/ProfileImage';
 import ProfileStats from '../components/Profile/ProfileStats';
 import { GetUserRoute } from '../utils/APIRoutes';
+import UserPosts from '../components/Profile/UserPosts';
 
 const Profile = () => {
   const location = useLocation();
@@ -41,6 +42,7 @@ const Profile = () => {
     <Container>
       <ProfileImage avatar={profileUser.avatar} username={profileUser.username} />
       <ProfileStats mobile={profileUser.mobile} address={profileUser.address} website={profileUser.website} gender={profileUser.gender} _id={pathName} avatar={profileUser.avatar} fullname={profileUser.fullname} username={profileUser.username} email={profileUser.email} following={profileUser.following} followers={profileUser.followers} story={profileUser.story} />
+      <UserPosts />
     </Container>
   );
 };
@@ -53,7 +55,8 @@ const Container = styled.div`
   grid-template-rows: 200px auto;
 
   grid-template-areas:
-    "profile_image profile_stats";
+    "profile_image profile_stats"
+    "user_posts user_posts";
 `;
 
 export default Profile;

@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import CommentSection from '../components/Posts/CommentSection';
 
 const Posts = () => {
+    const auth = useSelector((state) => state.auth.user._id);
     const [showCommentSection, setShowCommentSection] = useState(false);
     const [commentChecker, setCommentChecker] = useState(false);
     const [likeCount, setLikeCount] = useState({ value: 0 });
@@ -21,7 +22,7 @@ const Posts = () => {
     const [likeChecker, setLikeChecker] = useState(false);
     const [dislikeChecker, setDislikeChecker] = useState(false);
     const [showSkeleton, setShowSkeleton] = useState(false);
-    const [postImages, setPostImages] = useState([]);
+    const [postImages, setPostImages] = useState(null);
     const access_token = useSelector((state) => state.auth['access_token']);
     const params = useParams();
     const [postOwner, setPostOwner] = useState(null);
@@ -32,7 +33,10 @@ const Posts = () => {
                 headers: { Authorization: access_token }
             })
                 .then((result => {
+                    console.log(result.data.post);
                     setPostImages(result.data.post);
+                    if (result.data.post.likes.includes(auth)) setLikeChecker(true);
+                    if (result.data.post.dislikes.includes(auth)) setDislikeChecker(true);
                     setLikeCount({ ...likeCount, value: result.data.post.likes.length });
                     setDislikeCount({ ...dislikeCount, value: result.data.post.dislikes.length });
                     setShowSkeleton(true);
@@ -67,7 +71,7 @@ const Posts = () => {
             })
             .catch((err) => {
                 if (err.response.status === 400) {
-                    toast.error(err.response.data.msg, ToastOptions)
+                    toast.error(err.response.data.msg, ToastOptions);
                 }
                 console.error(err);
             });
@@ -104,11 +108,9 @@ const Posts = () => {
                             })
                         }
                     </Carousel>
-                    {
-                        <TitleContainer>
-                            <p>{postImages.content}</p>
-                        </TitleContainer>
-                    }
+                    <TitleContainer>
+                        <p>{postImages.content}</p>
+                    </TitleContainer>
                     <IconsContainer>
                         <div style={{ display: 'flex', gap: '7px' }}>
                             {
@@ -127,11 +129,13 @@ const Posts = () => {
                             }
                         </div>
                         {
-                            commentChecker ? <FaCommentDots onClick={() => { setCommentChecker(false); setShowCommentSection(false) }}/> : <FaRegCommentDots onClick={() => { setCommentChecker(true); setShowCommentSection(true) }} />
+                            commentChecker ? <FaCommentDots onClick={() => { setCommentChecker(false); setShowCommentSection(false); }} /> : <FaRegCommentDots onClick={() => { setCommentChecker(true); setShowCommentSection(true); }} />
                         }
-                        {
-                            !showCommentSection ? <></> : <CommentSection setShowCommentSection={setShowCommentSection} />
-                        }
+                        <div style={{ position: 'relative' }}>
+                            {
+                                !showCommentSection ? <></> : <CommentSection postId={postImages._id} comments={postImages.comments} setShowCommentSection={setShowCommentSection} />
+                            }
+                        </div>
                     </IconsContainer>
                 </>
             }

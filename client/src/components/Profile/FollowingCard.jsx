@@ -61,7 +61,7 @@ const FollowingCard = ({ user_id, sender }) => {
     };
 return (
     <Container>
-        <img src={userState.avatar} alt={userState.fullname} />
+        <img src={userState.avatar.url} alt={userState.fullname} />
         <div>
             <span>{userState.username}</span>
             <span style={{ fontSize: '0.8em' }}>{userState.fullname}</span>

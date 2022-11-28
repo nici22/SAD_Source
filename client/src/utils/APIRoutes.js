@@ -19,3 +19,7 @@ export const fetchPostRoute = `${host}/api/posts/fetchPost`;
 export const findFromPostRoute = `${host}/api/posts/findFromPost`;
 export const likePostRoute = `${host}/api/posts/likePost`;
 export const dislikePostRoute = `${host}/api/posts/dislikePost`;
+export const getHomePostsRoute = `${host}/api/posts/getHomePosts`;
+
+export const createCommentRoute = `${host}/api/comments/createComment`;
+export const getUserFromCommentRoute = `${host}/api/comments/getUserFromComment`;
