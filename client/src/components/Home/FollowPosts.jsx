@@ -18,7 +18,7 @@ const FollowPosts = () => {
             })
                 .then((result) => {
                     console.log(result.data.posts);
-                    console.log(type(result.data.posts));
+                    console.log(typeof(result.data.posts));
                     setDisplay(true);
                     setPosts(result.data.posts);
                 })
