@@ -13,7 +13,9 @@ const PostInputContainer = () => {
     };
     return (
         <Container>
-            <img style={{ filter: theme.payload ? 'invert(1)' : 'invert(0)' }} src={user.avatar.url} alt="your profile" />
+            {user &&
+                <img style={{ filter: theme.payload ? 'invert(1)' : 'invert(0)' }} src={user.avatar.url} alt="your profile" />
+            }
             <motion.button onClick={handleClick} whileTap={{ scale: 0.7 }} whileHover={{ scale: 0.9, color: '#fff', backgroundColor: '#00B9FF' }} type='submit'>What Are You Thinking Today?</motion.button>
             {
                 !showCreatePost ? <></> : <CreatePost setShowCreatePost={setShowCreatePost} user={user} />

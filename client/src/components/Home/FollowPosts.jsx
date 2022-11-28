@@ -38,6 +38,7 @@ const FollowPosts = () => {
                 :
                 <>
                 {
+                    posts && 
                     posts.map(post => {
                         return <HomeOnePost key={post._id} post={post} />
                     })
