@@ -28,6 +28,13 @@ app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static("client/build"));
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,"client","build","index.html"));
+    });
+}
+
 const PORT = process.env.PORT || 5000; 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
