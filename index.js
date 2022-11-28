@@ -20,7 +20,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://s0c14l1z3-7dyen.ondigitalocean.app',
+    origin: process.env.BASE_URL,
     credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));
